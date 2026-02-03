@@ -5,5 +5,15 @@ export async function logout() {
     method: "POST",
     credentials: "include",
   });
+  const header = document.getElementById("header");
+  header.innerHTML = "";
+  const h1 = document.createElement("h1");
+  h1.textContent = "lab";
+  const span = document.createElement("span");
+  span.textContent = "Ader";
+  span.className = "light";
+  h1.appendChild(span);
+  header.append(h1);
+
   displayLogin();
 }

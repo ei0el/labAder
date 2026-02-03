@@ -1,6 +1,7 @@
 import { clearApp } from "./clearApp.js";
 import { displaySignUp } from "./displaySignUp.js";
 import { displayFeed } from "./displayFeed.js";
+import { resetPassword } from "./resetPassword.js";
 
 import { DOMAIN } from "./app.js";
 import { app } from "./app.js";
@@ -32,7 +33,7 @@ export function displayLogin() {
   forgotPassword.textContent = "Forgot Password?";
   forgotPassword.style.cursor = "pointer";
   forgotPassword.style.color = "grey";
-  forgotPassword.addEventListener("click", {});
+  forgotPassword.addEventListener("click", resetPassword);
 
   const noAccount = document.createElement("h5");
   noAccount.textContent = "Don't Have an Account? ";
@@ -42,11 +43,15 @@ export function displayLogin() {
   signUp.style.color = "blue";
   noAccount.append(signUp);
 
+  const container = document.createElement("div");
+  container.className = "container";
   const card = document.createElement("div");
   card.className = "card";
   card.append(title, form, forgotPassword, noAccount);
 
-  app.appendChild(card);
+  container.append(card);
+
+  app.appendChild(container);
 
   signUp.addEventListener("click", displaySignUp);
 

@@ -13,7 +13,6 @@ export function changePassword() {
   const oldPassword = document.createElement("input");
   oldPassword.type = "password";
   oldPassword.placeholder = "Old Password";
-  oldPassword.value = "";
   oldPassword.required = true;
 
   const newPassword = document.createElement("input");
@@ -36,7 +35,10 @@ export function changePassword() {
 
   form.append(oldPassword, newPassword, confirmPassword, updatePassword);
   card.append(form, backToProfile);
-  app.appendChild(card);
+  const container = document.createElement("div");
+  container.className = "container";
+  container.appendChild(card);
+  app.appendChild(container);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();

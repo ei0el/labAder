@@ -2,7 +2,7 @@ const getSession = require("./getSession");
 const pool = require("../db/db");
 
 function postApi(req, res) {
-  const session = getSession(req);
+  const session = getSession.getSession(req);
 
   if (!session) {
     res.writeHead(401, { "Content-Type": "application/json" });

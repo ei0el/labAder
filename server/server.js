@@ -98,6 +98,13 @@ const server = http.createServer(async (req, res) => {
         "application/javascript",
       );
     }
+    if (req.url === "/public/scripts/resetPassword.js") {
+      return serveStaticFiles(
+        res,
+        path.join(__dirname, "../public/scripts/", "resetPassword.js"),
+        "application/javascript",
+      );
+    }
 
     if (req.url === "/feed") {
       feedApi(req, res);

@@ -108,6 +108,7 @@ footer {
   border-bottom: 1px solid #1d4e88;
   position: sticky;
   top: 0;
+  align-items: center;
 }
 
 ul {
@@ -117,7 +118,7 @@ ul {
 }
 
 li {
-  margin: 2rem;
+  margin: 1rem;
   color: #1d4ed8;
   border: 1px solid #1d4e88;
   padding: 0.5rem 1rem;
@@ -168,4 +169,8 @@ hr {
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 3rem;
   justify-items: center;
+}
+
+.container {
+  margin-bottom: 22rem;
 }

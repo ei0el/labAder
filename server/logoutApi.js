@@ -1,8 +1,7 @@
 const getSession = require("./getSession");
-const login = require("./loginApi");
 
 function logoutApi(req, res) {
-  const session = getSession(req);
+  const session = getSession.getSession(req);
 
   if (session) {
     const cookieHeader = req.headers.cookie;
@@ -11,7 +10,7 @@ function logoutApi(req, res) {
       .find((c) => c.startsWith("sessionId="))
       .split("=")[1];
 
-    delete login.sessions[sessionId];
+    delete getSession.sessions[sessionId];
   }
 
   res.writeHead(200, {

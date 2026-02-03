@@ -49,4 +49,4 @@ function signUpApi(req, res) {
   });
 }
 
-module.exports = { signUpApi };
+module.exports = signUpApi;

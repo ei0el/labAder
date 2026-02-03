@@ -68,6 +68,9 @@ export function displaySignUp() {
 
     displayLogin();
   });
+  const card = document.createElement("div");
+  card.className = "card";
+  card.append(title, form, backToLogin);
 
-  app.append(title, form, backToLogin);
+  app.appendChild(card);
 }

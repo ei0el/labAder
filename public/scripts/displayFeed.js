@@ -2,13 +2,23 @@ import { createPost } from "./createPost.js";
 import { clearApp } from "./clearApp.js";
 import { displayLogin } from "./displayLogin.js";
 import { app } from "./app.js";
+import { profilePage } from "./profilePage.js";
 
 import { DOMAIN } from "./app.js";
 
 export async function displayFeed() {
   document.title = "Feed | labAder";
   clearApp();
+  const header = document.getElementById("header");
+  header.innerHTML = "";
+  const h1 = document.createElement("h1");
+  h1.textContent = "lab";
+  const span = document.createElement("span");
+  span.textContent = "Ader";
+  span.className = "light";
 
+  h1.appendChild(span);
+  header.append(h1);
   const nav = document.createElement("nav");
   const ul = document.createElement("ul");
 
@@ -21,10 +31,15 @@ export async function displayFeed() {
   li3.textContent = "Profile";
 
   ul.append(li1, li2, li3);
-  ul.append(nav);
+  nav.appendChild(ul);
 
   li1.addEventListener("click", displayFeed);
   li2.addEventListener("click", createPost);
+  li3.addEventListener("click", profilePage);
+
+  const welcome = document.createElement("h2");
+
+  header.append(welcome, nav);
 
   const response = await fetch(`${DOMAIN}/feed`, {
     credentials: "include",
@@ -37,12 +52,13 @@ export async function displayFeed() {
   const data = await response.json();
 
   const feed = document.createElement("div");
-  const welcome = document.createElement("h2");
+  feed.className = "feed";
+
   welcome.textContent = data.message;
-  app.appendChild(welcome);
 
   data.posts.forEach((posts) => {
     const wrapper = document.createElement("div");
+    wrapper.className = "wrapper";
 
     const email = document.createElement("h3");
     email.textContent = posts.email;
@@ -54,13 +70,14 @@ export async function displayFeed() {
     postContent.textContent = posts.content;
 
     const postTime = document.createElement("h5");
-    postTime.textContent = posts.created_at;
-
+    postTime.textContent = posts.created_at.toLocaleString();
     const postSeparator = document.createElement("hr");
 
-    wrapper.append(email, postContent, postImg, postTime, postSeparator);
-    feed.appendChild(wrapper);
+    wrapper.append(email, postContent, postImg, postSeparator, postTime);
+    const card = document.createElement("div");
+    card.className = "card";
+    card.append(wrapper);
+    feed.appendChild(card);
   });
-
   app.appendChild(feed);
 }

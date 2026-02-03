@@ -42,12 +42,17 @@ export function displayLogin() {
   signUp.style.color = "blue";
   noAccount.append(signUp);
 
-  app.append(title, form, forgotPassword, noAccount);
+  const card = document.createElement("div");
+  card.className = "card";
+  card.append(title, form, forgotPassword, noAccount);
+
+  app.appendChild(card);
 
   signUp.addEventListener("click", displaySignUp);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const response = await fetch(`${DOMAIN}/login`, {
       method: "POST",
       credentials: "include",
@@ -62,7 +67,6 @@ export function displayLogin() {
       return;
     }
 
-    alert(data.message);
     displayFeed();
   });
 }
